@@ -1,11 +1,11 @@
 import pytest
 from project import (
-    write_champions_file,
-    exists,
     read_file,
     request_champions,
-    check_picks,
+    write_champions_file,
+    exists,
     check_bans,
+    check_picks,
     check_valid_name,
     ordinal,
     get_round,
@@ -13,7 +13,7 @@ from project import (
 )
 
 
-def test_file_not_found():
+def test_read_file_not_found():
     with pytest.raises(FileNotFoundError):
         read_file("test/file.json")
 
