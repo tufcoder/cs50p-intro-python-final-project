@@ -5,6 +5,7 @@ import sys
 import inflect
 import csv
 import os
+from pyfiglet import Figlet
 from datetime import datetime
 from tabulate import tabulate
 
@@ -12,7 +13,9 @@ from tabulate import tabulate
 def main():
     try:
         get_champions()
-        print("Welcome to Console LoL Draft ⌨️")
+        figlet = Figlet()
+        figlet.setFont(font="slant")
+        print(figlet.renderText("LoL Draft SIM"))
         bans = []
         picks = []
         blue_bans = []
