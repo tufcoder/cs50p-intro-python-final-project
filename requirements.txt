@@ -1,0 +1,4 @@
+pip install requests
+pip install inflect
+pip install pyfiglet
+pip install tabulate
