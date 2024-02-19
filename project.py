@@ -1,10 +1,9 @@
-import requests
-import json
 import os
 import sys
-import inflect
 import csv
-import os
+import json
+import inflect
+import requests
 from pyfiglet import Figlet
 from datetime import datetime
 from tabulate import tabulate
