@@ -1,6 +1,6 @@
 # LoL Draft SIM
 
-#### Video Demo <URL HERE>
+#### Video Demo <https://youtu.be/lN9AF-YE_Ms>
 
 #### Introduction:
 
