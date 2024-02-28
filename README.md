@@ -10,7 +10,7 @@
 * City | County: São Paulo | Brazil 🇧🇷
 * Date: 2024-02-19
 
-#### Description: 
+#### Description:
 
 This is my final project for the CS50 Introduction to Programming with Python course.
 
@@ -19,10 +19,10 @@ It's a League of Legends draft simulator.
 ```txt
     __          __       ____             ______     _____ ______  ___
    / /   ____  / /      / __ \_________ _/ __/ /_   / ___//  _/  |/  /
-  / /   / __ \/ /      / / / / ___/ __ `/ /_/ __/   \__ \ / // /|_/ / 
- / /___/ /_/ / /___   / /_/ / /  / /_/ / __/ /_    ___/ // // /  / /  
-/_____/\____/_____/  /_____/_/   \__,_/_/  \__/   /____/___/_/  /_/   
-```                                                               
+  / /   / __ \/ /      / / / / ___/ __ `/ /_/ __/   \__ \ / // /|_/ /
+ / /___/ /_/ / /___   / /_/ / /  / /_/ / __/ /_    ___/ // // /  / /
+/_____/\____/_____/  /_____/_/   \__,_/_/  \__/   /____/___/_/  /_/
+```
 
 The program gets the "champions.json" via Riot API with the list of all the champions in the game and write a file with the data.
 
@@ -60,3 +60,18 @@ Total champions banned: 10 bans
 Total champions picked: 10 picks
 
 In the end of the draft, a "csv" file is created in a temp folder with the draft resume.
+
+### How to run this program
+
+⚠️ You need to have [**Python**](https://www.python.org/) 🐍 installed in your computer.
+
+```bash
+git clone git@github.com:tufcoder/cs50p-intro-python-final-project.git project
+cd project
+# If wanted, check tests
+pytest test
+# Run the program with
+python3 project.py
+```
+
+Enjoy 😊

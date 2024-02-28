@@ -44,7 +44,7 @@ def main():
         final_table_picks(picks, blue_picks, red_picks, table_picks)
         final_draf(table_picks, table_bans, draft)
         print("\n", tabulate(draft, headers=header_picks, tablefmt="pretty"))
-        write_draft_csv(header_picks, draft)
+        write_draft_csv("temp", header_picks, draft)
     except KeyboardInterrupt:
         print()
         pass
@@ -64,6 +64,7 @@ def final_draf(table_picks, table_bans, draft):
                     table_bans[i][1],
                 ]
             )
+    return draft
 
 
 def final_table_picks(picks, blue_picks, red_picks, table_picks):
@@ -75,6 +76,7 @@ def final_table_picks(picks, blue_picks, red_picks, table_picks):
     for i, p in enumerate(blue_picks):
         if i > 2:
             table_picks.append([p, red_picks[i]])
+    return table_picks
 
 
 def final_table_bans(bans, blue_bans, red_bans, table_bans):
@@ -86,6 +88,7 @@ def final_table_bans(bans, blue_bans, red_bans, table_bans):
     for i, b in enumerate(blue_bans):
         if i > 2:
             table_bans.append([b, red_bans[i]])
+    return table_bans
 
 
 def append_draf(table_picks, table_bans, draft):
@@ -98,6 +101,7 @@ def append_draf(table_picks, table_bans, draft):
                 table_bans[i][1],
             ]
         )
+    return draft
 
 
 def append_table_picks(picks, blue_picks, red_picks, table_picks):
@@ -108,6 +112,7 @@ def append_table_picks(picks, blue_picks, red_picks, table_picks):
             red_picks.append(pick)
     for i, p in enumerate(blue_picks):
         table_picks.append([p, red_picks[i]])
+    return table_picks
 
 
 def append_table_bans(bans, blue_bans, red_bans, table_bans):
@@ -118,12 +123,13 @@ def append_table_bans(bans, blue_bans, red_bans, table_bans):
             red_bans.append(ban)
     for i, b in enumerate(blue_bans):
         table_bans.append([b, red_bans[i]])
+    return table_bans
 
 
-def write_draft_csv(header, table):
-    mkdir("temp")
+def write_draft_csv(path, header, table):
+    mkdir(path)
     time = datetime.now().strftime("%Y%m%d%H%M%S%f")
-    with open(f"temp/draft_sim_{time}.csv", "w") as file:
+    with open(f"{path}/draft_sim_{time}.csv", "w") as file:
         writer = csv.writer(file)
         writer.writerow(header)
         writer.writerows(table)
@@ -167,6 +173,7 @@ def first_round_bans(x, y, bans, picks):
         else:
             print(side("red", "ban"))
         bans.append(sinput(f"{ordinal(i)} ban: ", bans, picks))
+    return bans
 
 
 def first_round_picks(x, y, bans, picks):
@@ -176,6 +183,7 @@ def first_round_picks(x, y, bans, picks):
         else:
             print(side("red", "pick"))
         picks.append(sinput(f"{ordinal(i)} pick: ", bans, picks))
+    return picks
 
 
 def second_round_bans(x, y, bans, picks):
@@ -185,6 +193,7 @@ def second_round_bans(x, y, bans, picks):
         else:
             print(side("red", "ban"))
         bans.append(sinput(f"{ordinal(i)} ban: ", bans, picks))
+    return bans
 
 
 def second_round_picks(x, y, bans, picks):
@@ -194,16 +203,17 @@ def second_round_picks(x, y, bans, picks):
         else:
             print(side("red", "pick"))
         picks.append(sinput(f"{ordinal(i)} pick: ", bans, picks))
+    return picks
 
 
-def sinput(s, bans, picks):
+def sinput(s, bans, picks, path="champions.json"):
     while True:
         try:
             name = input(s).strip()
             check_valid_name(name)
             check_bans(name, bans)
             check_picks(name, picks)
-            return check_names(name, bans, picks)
+            return check_names(name, bans, picks, path)
         except ValueError:
             pass
 
@@ -226,8 +236,8 @@ def check_picks(name, picks):
         raise ValueError
 
 
-def check_names(name, bans, picks):
-    champions = read_file()
+def check_names(name, bans, picks, path="champions.json"):
+    champions = read_file(path)
     if name not in champions["data"]:
         lower = check_lower_names(champions, name, bans, picks)
         if lower:
@@ -319,8 +329,8 @@ def read_file(filename="champions.json"):
         sys.exit(f"Error: read file {filename}")
 
 
-def get_champions():
-    return read_file(write_champions_file())
+def get_champions(path="champions.json"):
+    return read_file(write_champions_file(path))
 
 
 if __name__ == "__main__":

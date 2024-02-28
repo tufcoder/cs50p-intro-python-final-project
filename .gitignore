@@ -1,6 +1,7 @@
 __pycache__/
 .pytest_cache/
-test/__pycache__/
 temp/*.csv
+test/__pycache__/
+test/temp_draft
 test/test_champions.json
 champions.json
